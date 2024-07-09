@@ -35,11 +35,11 @@ public class HelloController {
             kol.put(p,Double.parseDouble(o));
             p++;
         }
-        Itog kkk = new Itog();
+        Itog itog = new Itog();
         SutLm sutLm = new SutLm();
         WriteIntoExcel write = new WriteIntoExcel();
         sutLm.SutAndMetForLMZ(nom,kol);
-        write.writeIntoExcel("C:\\Users\\wulvj\\OneDrive\\Рабочий стол\\", nom,kol, sutLm.SutAndMetForLMZ(nom,kol), kkk.itog(sutLm.SutAndMetForLMZ(nom,kol)));
+        write.writeIntoExcel("C:\\Users\\wulvj\\OneDrive\\Рабочий стол\\", nom,kol, sutLm.SutAndMetForLMZ(nom,kol), itog.itog(sutLm.SutAndMetForLMZ(nom,kol)));
 
     }
 }
