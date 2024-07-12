@@ -4,23 +4,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sutmetiz.HelloController">
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sutmetiz.HelloController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-
-    <Label fx:id="welcomeText" />
-    <Button onAction="#onHelloButtonClick" text="Hello!" />
-   <TableView prefHeight="200.0" prefWidth="200.0">
-     <columns>
-       <TableColumn prefWidth="100.79998779296875" text="C1">
-            <graphic>
-               <TextArea fx:id="textAreaNom" prefHeight="200.0" prefWidth="200.0" />
-            </graphic></TableColumn>
-       <TableColumn prefWidth="99.20001220703125" text="C2">
-            <graphic>
-               <TextArea fx:id="textAreakol" prefHeight="200.0" prefWidth="99.0" />
-            </graphic></TableColumn>
-     </columns>
-   </TableView>
+    <Button onAction="#onHelloButtonClick" text="Сохранить" />
+   <SplitPane dividerPositions="0.29797979797979796" VBox.vgrow="ALWAYS">
+     <items>
+       <AnchorPane>
+            <children>
+               <TextArea fx:id="textAreaNom" layoutX="-20.0" prefHeight="181.0" prefWidth="62.0" AnchorPane.bottomAnchor="-20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            </children>
+         </AnchorPane>
+         <AnchorPane>
+            <children>
+               <TextArea fx:id="textAreaKol" layoutX="91.0" prefHeight="158.0" prefWidth="42.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            </children>
+         </AnchorPane>
+     </items>
+   </SplitPane>
 </VBox>

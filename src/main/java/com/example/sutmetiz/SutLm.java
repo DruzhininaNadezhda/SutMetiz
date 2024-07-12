@@ -1,16 +1,13 @@
 package com.example.sutmetiz;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
-
 public class SutLm {
     private String itogo;
     private int metiz;
     private int sutQuantity;
     private String slb;
     private Map<Integer, String> result;
-
     public Map<Integer, String> SutAndMetForLMZ(Map<Integer, String> nomenclatureInFail, Map<Integer, Double> sutQuantityInFail) {
         metiz = 1;
         int i = 0;
@@ -101,7 +98,6 @@ public class SutLm {
         }
         return itogo;
     }
-
     private String sutForT(String a, int nn) {
         if (Pattern.compile(".*\\*1[0-4][1-9]-.*").matcher(a).find()
                 || Pattern.compile(".*\\*1[1-4].-.").matcher(a).find()) {

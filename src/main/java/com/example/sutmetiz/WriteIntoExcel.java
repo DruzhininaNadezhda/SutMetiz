@@ -1,16 +1,14 @@
 package com.example.sutmetiz;
-
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Map;
 
 public class WriteIntoExcel {
-    public void writeIntoExcel(String path, Map<Integer, String> nomenclature, Map<Integer, Double> nomenclatureQuantity, Map<Integer, String> result,Map<String, Integer> itogo ) throws FileNotFoundException, IOException {
+    public void writeIntoExcel(String path, Map<Integer, String> nomenclature, Map<Integer, String> nomenclatureQuantity, Map<Integer, String> result,Map<String, Integer> itogo ) throws FileNotFoundException, IOException {
         Workbook workbook = new XSSFWorkbook();
 
         Sheet sheet = workbook.createSheet("Persons");
@@ -70,10 +68,10 @@ public class WriteIntoExcel {
             cell.setCellStyle(style);
             i++;
         }
-        String fileLocation = path + "temp.xlsx";
 
-        FileOutputStream outputStream = new FileOutputStream(fileLocation);
+        FileOutputStream outputStream = new FileOutputStream(path);
         workbook.write(outputStream);
         workbook.close();
+        outputStream.close();
     }
 }
