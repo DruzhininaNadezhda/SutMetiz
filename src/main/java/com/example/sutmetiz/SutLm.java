@@ -7,6 +7,7 @@ public class SutLm {
     private int metiz;
     private int sutQuantity;
     private String slb;
+    private String sltk;
     private Map<Integer, String> result;
     public Map<Integer, String> SutAndMetForLMZ(Map<Integer, String> nomenclatureInFail, Map<Integer, Double> sutQuantityInFail) {
         metiz = 1;
@@ -14,6 +15,19 @@ public class SutLm {
         int lineNumber = 1;
         result = new HashMap<Integer, String>();
         while (i < nomenclatureInFail.size()) {
+            if (Pattern.compile("НТ.*").matcher(nomenclatureInFail.get(lineNumber)).find()
+                    || Pattern.compile("НТ[УСПОР].*").matcher(nomenclatureInFail.get(lineNumber)).find()){
+                sutQuantity = (int) (sutQuantityInFail.get(lineNumber) * 1);
+                result.put(lineNumber, SltkForT(nomenclatureInFail.get(lineNumber), sutQuantity));
+            }
+            if (Pattern.compile("НТТ.*").matcher(nomenclatureInFail.get(lineNumber)).find()){
+                sutQuantity = (int) (sutQuantityInFail.get(lineNumber) * 2);
+                result.put(lineNumber, SltkForT(nomenclatureInFail.get(lineNumber), sutQuantity));
+            }
+            if (Pattern.compile("НТХ.*").matcher(nomenclatureInFail.get(lineNumber)).find()){
+                sutQuantity = (int) (sutQuantityInFail.get(lineNumber) * 3);
+                result.put(lineNumber, SltkForT(nomenclatureInFail.get(lineNumber), sutQuantity));
+            }
             if (Pattern.compile("ЛМЗ [4-6]\\d{2}\\*.*").matcher(nomenclatureInFail.get(lineNumber)).find()
                     || Pattern.compile("ЛПМЗ [4-6]\\d{2}\\*.*").matcher(nomenclatureInFail.get(lineNumber)).find()
                     || Pattern.compile("ЛПМ [4-6]\\d{2}\\*.*").matcher(nomenclatureInFail.get(lineNumber)).find()
@@ -96,6 +110,14 @@ public class SutLm {
                     hzOrS(a) + " ///"
                     +metiz + " метизов";
         }
+        return itogo;
+    }
+    private String SltkForT(String a, int n) {
+        sltk = a.substring(a.indexOf("*"),a.indexOf("-"));
+            metiz = 0;
+            itogo = "" + n + " СЛТК" + sltk +"-"+
+                    hzOrS(a) + " ///"
+                    +metiz + " метизов";
         return itogo;
     }
     private String sutForT(String a, int nn) {
