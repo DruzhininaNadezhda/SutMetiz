@@ -13,12 +13,12 @@
      <items>
        <AnchorPane>
             <children>
-               <TextArea fx:id="textAreaNom" layoutX="-20.0" prefHeight="181.0" prefWidth="62.0" AnchorPane.bottomAnchor="-20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               <TextArea fx:id="textAreaNom" layoutX="-20.0" prefHeight="181.0" prefWidth="62.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             </children>
          </AnchorPane>
          <AnchorPane>
             <children>
-               <TextArea fx:id="textAreaKol" layoutX="91.0" prefHeight="158.0" prefWidth="42.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               <TextArea fx:id="textAreaKol" layoutX="91.0" prefHeight="158.0" prefWidth="42.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             </children>
          </AnchorPane>
      </items>

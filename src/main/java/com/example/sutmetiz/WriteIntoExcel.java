@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class WriteIntoExcel {
     public void writeIntoExcel(String path, Map<Integer, String> nomenclature, Map<Integer, String> nomenclatureQuantity, Map<Integer, String> result,Map<String, Integer> itogo ) throws FileNotFoundException, IOException {
@@ -59,14 +60,27 @@ public class WriteIntoExcel {
             i++;
         }
         for (Map.Entry<String, Integer> entry : itogo.entrySet()) {
-            Row row = sheet.createRow(i);
-            Cell cell = row.createCell(0);
+            if (!Pattern.compile("Соединители необходимо посчитать в позиции.*").matcher(entry.getKey()).find()) {
+                Row row = sheet.createRow(i);
+                Cell cell = row.createCell(0);
+                cell.setCellValue(entry.getKey());
+                cell.setCellStyle(style);
+                cell = row.createCell(1);
+                cell.setCellValue(entry.getValue());
+                cell.setCellStyle(style);
+                i++;}
+        }
+
+        for (Map.Entry<String, Integer> entry : itogo.entrySet()) {
+            if (Pattern.compile("Соединители необходимо посчитать в позиции.*").matcher(entry.getKey()).find()) {
+                Row row = sheet.createRow(i);
+                Cell cell = row.createCell(0);
             cell.setCellValue(entry.getKey());
             cell.setCellStyle(style);
             cell = row.createCell(1);
             cell.setCellValue(entry.getValue());
             cell.setCellStyle(style);
-            i++;
+            i++;}
         }
 
         FileOutputStream outputStream = new FileOutputStream(path);

@@ -2,12 +2,17 @@ package com.example.sutmetiz;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class Itog {
     Map<String,Integer> itog = new HashMap<>();
 
     public Map<String,Integer> itog(Map<Integer, String> sutAndMetiz) {
         for (Map.Entry<Integer, String> entry : sutAndMetiz.entrySet()) {
+            if (Pattern.compile("Соединители необходимо посчитать в позиции.*").matcher(entry.getValue()).find()){
+                itog.put(entry.getValue(),0);
+            }
+             else {
             StringBuilder sut = new StringBuilder();
             StringBuilder sutQuantity = new StringBuilder();
             sut.append(entry.getValue());
@@ -35,7 +40,7 @@ public class Itog {
                 int quantity = Integer.parseInt(String.valueOf(hardwareQuantity))
                         + itog.get(hardware.toString());
                 itog.put(hardware.toString(),quantity);}
-        }
+        }}
             return itog;
         }
 

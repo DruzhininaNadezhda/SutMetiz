@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 public class SutLm {
     private String itogo;
+    private final String metis16=" Метизы_М8*16";
     private int metiz;
     private int sutQuantity;
     private String slb;
@@ -15,20 +16,25 @@ public class SutLm {
         int lineNumber = 1;
         result = new HashMap<Integer, String>();
         while (i < nomenclatureInFail.size()) {
-            if (Pattern.compile("НТ.*").matcher(nomenclatureInFail.get(lineNumber)).find()
-                    || Pattern.compile("НТ[УСПОР].*").matcher(nomenclatureInFail.get(lineNumber)).find()){
-                sutQuantity = (int) (sutQuantityInFail.get(lineNumber) * 1);
-                result.put(lineNumber, SltkForT(nomenclatureInFail.get(lineNumber), sutQuantity));
-            }
-            if (Pattern.compile("НТТ.*").matcher(nomenclatureInFail.get(lineNumber)).find()){
-                sutQuantity = (int) (sutQuantityInFail.get(lineNumber) * 2);
-                result.put(lineNumber, SltkForT(nomenclatureInFail.get(lineNumber), sutQuantity));
-            }
-            if (Pattern.compile("НТХ.*").matcher(nomenclatureInFail.get(lineNumber)).find()){
+            if (Pattern.compile("НТХ.*[0-9]{3}\\*.*").matcher(nomenclatureInFail.get(lineNumber)).find()
+                    ||Pattern.compile("ЛТХ.*[0-9]{3}\\*.*").matcher(nomenclatureInFail.get(lineNumber)).find()){
                 sutQuantity = (int) (sutQuantityInFail.get(lineNumber) * 3);
                 result.put(lineNumber, SltkForT(nomenclatureInFail.get(lineNumber), sutQuantity));
             }
-            if (Pattern.compile("ЛМЗ [4-6]\\d{2}\\*.*").matcher(nomenclatureInFail.get(lineNumber)).find()
+            else if (Pattern.compile("НТТ.*[0-9]{3}\\*.*").matcher(nomenclatureInFail.get(lineNumber)).find()
+                    ||Pattern.compile("ЛТТ.*[0-9]{3}\\*.*").matcher(nomenclatureInFail.get(lineNumber)).find()){
+                sutQuantity = (int) (sutQuantityInFail.get(lineNumber) * 2);
+                result.put(lineNumber, SltkForT(nomenclatureInFail.get(lineNumber), sutQuantity));
+            }
+            else if (Pattern.compile("НТ.*[0-9]{3}\\*.*").matcher(nomenclatureInFail.get(lineNumber)).find()
+                    || Pattern.compile("НТ[УСПОР].*[0-9]{3}\\*.*").matcher(nomenclatureInFail.get(lineNumber)).find()
+                    ||Pattern.compile("ЛТ.*[0-9]{3}\\*.*").matcher(nomenclatureInFail.get(lineNumber)).find()
+                    || Pattern.compile("ЛТ[УСПОР].*[0-9]{3}\\*.*").matcher(nomenclatureInFail.get(lineNumber)).find())
+            {
+                sutQuantity = (int) (sutQuantityInFail.get(lineNumber) * 1);
+                result.put(lineNumber, SltkForT(nomenclatureInFail.get(lineNumber), sutQuantity));
+            }
+            else if (Pattern.compile("ЛМЗ [4-6]\\d{2}\\*.*").matcher(nomenclatureInFail.get(lineNumber)).find()
                     || Pattern.compile("ЛПМЗ [4-6]\\d{2}\\*.*").matcher(nomenclatureInFail.get(lineNumber)).find()
                     || Pattern.compile("ЛПМ [4-6]\\d{2}\\*.*").matcher(nomenclatureInFail.get(lineNumber)).find()
                     || Pattern.compile("ЛМ [4-6]\\d{2}\\*.*").matcher(nomenclatureInFail.get(lineNumber)).find()
@@ -83,7 +89,15 @@ public class SutLm {
                 || Pattern.compile("НЛ[Х].* [1-6]\\d{2}\\*.*").matcher(nomenclatureInFail.get(lineNumber)).find()) {
             sutQuantity = (int) (sutQuantityInFail.get(lineNumber) * 6);
             result.put(lineNumber, sutForT(nomenclatureInFail.get(lineNumber), sutQuantity));
-        }
+          } else if (Pattern.compile("ЛМЗ[ТХР].*").matcher(nomenclatureInFail.get(lineNumber)).find()
+            ||Pattern.compile("ЛМ[ТХР].*").matcher(nomenclatureInFail.get(lineNumber)).find()
+            ||Pattern.compile("НЛ[ХТР].*").matcher(nomenclatureInFail.get(lineNumber)).find()
+            ||Pattern.compile("НЛЗ[ХТР].*").matcher(nomenclatureInFail.get(lineNumber)).find()
+            ||Pattern.compile("НТ[ХТР].*").matcher(nomenclatureInFail.get(lineNumber)).find()
+            || Pattern.compile("ЛТ[ХТР].*").matcher(nomenclatureInFail.get(lineNumber)).find()
+            ||Pattern.compile("ЛТг[ХТР].*").matcher(nomenclatureInFail.get(lineNumber)).find()){
+                result.put(lineNumber, "Соединители необходимо посчитать в позиции"+lineNumber +" ///");
+            }
             lineNumber++;
             i++;
         }
@@ -95,49 +109,50 @@ public class SutLm {
         if (Pattern.compile(".*\\*1[0-4][1-9]-.*").matcher(a).find()
                 || Pattern.compile(".*\\*1[1-4].-.").matcher(a).find()) {
             metiz = n * 16;
-            itogo = "" + n + " СЛБ" + slb + "-100-1,5-" +
+            itogo = "" + n + " СЛБ" + slb + "*100-1,5-" +
                     hzOrS(a) + " ///"
-                    +metiz + " метизов";
+                    +metiz + metis16;
         } else if (Pattern.compile(".*\\*1[5-9].-.*").matcher(a).find()
                 || Pattern.compile(".*\\*2\\d{2}-.*").matcher(a).find()) {
             metiz = n * 16;
-            itogo = "" + n + " СЛБ" + slb + "-150-1,5-" +
+            itogo = "" + n + " СЛБ" + slb + "*150-1,5-" +
                     hzOrS(a)+ " ///"
-                    +metiz + " метизов";
+                    +metiz + metis16;
         } else {
             metiz = n * 8;
             itogo = "" + n + " СЛБ" + slb + "-1,5-" +
                     hzOrS(a) + " ///"
-                    +metiz + " метизов";
+                    +metiz + metis16;
         }
         return itogo;
     }
     private String SltkForT(String a, int n) {
-        sltk = a.substring(a.indexOf("*"),a.indexOf("-"));
+        sltk = a.substring(a.indexOf("*")+1,a.indexOf("-"));
             metiz = 0;
-            itogo = "" + n + " СЛТК" + sltk +"-"+
+            itogo = "" + n + " СЛТК " + sltk +"-"+
                     hzOrS(a) + " ///"
-                    +metiz + " метизов";
+                    +metiz + metis16;
+
         return itogo;
     }
     private String sutForT(String a, int nn) {
         if (Pattern.compile(".*\\*1[0-4][1-9]-.*").matcher(a).find()
                 || Pattern.compile(".*\\*1[1-4].-.").matcher(a).find()) {
             metiz = nn * 8;
-            itogo = "" + nn + " СУТ 100-" +
+            itogo = "" + nn + " СУТ 100-1,5-" +
                     hzOrS(a) + " ///"
-                    + metiz + " метизов";
+                    + metiz + metis16;
         } else if (Pattern.compile(".*\\*1[5-9].-.*").matcher(a).find()
                 || Pattern.compile(".*\\*2\\d{2}-.*").matcher(a).find()) {
             metiz = nn * 8;
-            itogo = "" + nn + " СУТ 150-" +
+            itogo = "" + nn + " СУТ 150-1,5-" +
                     hzOrS(a) + " ///"
-                    + metiz + " метизов";
+                    + metiz + metis16;
         } else {
             metiz = nn * 4;
             itogo = "" + nn + " СУТ1,2 " +
                     hzOrS(a) + " ///" +
-                    metiz + " метизов";
+                    metiz + metis16;
         }
         return itogo;
     }
@@ -150,17 +165,21 @@ public class SutLm {
          if (c.matches(".*-ГЦ.*")) {
             sb = sb.delete(0,sb.lastIndexOf("ГЦ"));
             sb =sb.delete(sb.indexOf(" "), sb.length());
+             if (sb.indexOf(")")!=-1)  {sb =sb.deleteCharAt(sb.indexOf(")"));}
             hzOrS1= sb.toString();
         }else  if (c.matches(".*-НЖ.*")) {
             sb = sb.delete(0,sb.lastIndexOf("НЖ"));
             sb =sb.delete(sb.indexOf(" "), sb.length());
+            if (sb.indexOf(")")!=-1)  {sb =sb.deleteCharAt(sb.indexOf(")"));}
             hzOrS1= sb.toString();
         }else  if (c.matches(".*-ОЦ.*")) {
              sb = sb.delete(0,sb.lastIndexOf("ОЦ"));
+             if (sb.indexOf(")")!=-1)  {sb =sb.deleteCharAt(sb.indexOf(")"));}
              sb =sb.delete(sb.indexOf(" "), sb.length());
              hzOrS1= sb.toString();
          }else  if (c.matches(".*-RAL.*")) {
              sb = sb.delete(0,sb.lastIndexOf("RAL"));
+             if (sb.indexOf(")")!=-1)  {sb =sb.deleteCharAt(sb.indexOf(")"));}
              sb =sb.delete(sb.indexOf(" "), sb.length());
              hzOrS1= sb.toString();
          }
