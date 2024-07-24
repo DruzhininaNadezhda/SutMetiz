@@ -9,6 +9,8 @@ public class SutLm {
     private int sutQuantity;
     private String slb;
     private String sltk;
+    Supports supports=new Supports();
+    Separators separators = new Separators();
     private Map<Integer, String> result;
     public Map<Integer, String> SutAndMetForLMZ(Map<Integer, String> nomenclatureInFail, Map<Integer, Double> sutQuantityInFail) {
         metiz = 1;
@@ -16,7 +18,13 @@ public class SutLm {
         int lineNumber = 1;
         result = new HashMap<Integer, String>();
         while (i < nomenclatureInFail.size()) {
-            if (Pattern.compile("НТХ.*[0-9]{3}\\*.*").matcher(nomenclatureInFail.get(lineNumber)).find()
+            if (separators.hardwareForSupports(nomenclatureInFail.get(lineNumber),sutQuantityInFail.get(lineNumber))){
+              result.put(lineNumber, separators.getResult());
+            }
+            else if (supports.hardwareForSupports(nomenclatureInFail.get(lineNumber),sutQuantityInFail.get(lineNumber))){
+                result.put(lineNumber, supports.getResult());
+            }
+            else if (Pattern.compile("НТХ.*[0-9]{3}\\*.*").matcher(nomenclatureInFail.get(lineNumber)).find()
                     ||Pattern.compile("ЛТХ.*[0-9]{3}\\*.*").matcher(nomenclatureInFail.get(lineNumber)).find()){
                 sutQuantity = (int) (sutQuantityInFail.get(lineNumber) * 3);
                 result.put(lineNumber, SltkForT(nomenclatureInFail.get(lineNumber), sutQuantity));

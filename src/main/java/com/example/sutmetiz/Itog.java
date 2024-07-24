@@ -9,9 +9,40 @@ public class Itog {
 
     public Map<String,Integer> itog(Map<Integer, String> sutAndMetiz) {
         for (Map.Entry<Integer, String> entry : sutAndMetiz.entrySet()) {
-            if (Pattern.compile("Соединители необходимо посчитать в позиции.*").matcher(entry.getValue()).find()){
-                itog.put(entry.getValue(),0);
-            }
+            if (Pattern.compile("Соединители необходимо посчитать в позиции.*").matcher(entry.getValue()).find()) {
+                itog.put(entry.getValue(), 0);
+            } else if (entry.getValue().contains(" ////")) {
+                StringBuilder supports = new StringBuilder();
+                StringBuilder supportsQuantity = new StringBuilder();
+                supports.append(entry.getValue());
+                supports.delete(supports.indexOf(" ////"), supports.length());
+                if(supports!=null&& !supports.isEmpty()&& !supports.equals(" ")){
+                supportsQuantity.append(supports);
+                supports.delete(0, supports.indexOf("М"));
+                supportsQuantity.delete(supportsQuantity.indexOf(" "), supportsQuantity.length());
+                if (!itog.containsKey(supports.toString())) {
+                    itog.put(supports.toString(), Integer.parseInt(String.valueOf(supportsQuantity)));
+                } else {
+                    int quantity = Integer.parseInt(String.valueOf(supportsQuantity))
+                            + itog.get(supports.toString());
+                    itog.put(supports.toString(), quantity);
+                }}
+                StringBuilder hardwareSupports = new StringBuilder();
+                StringBuilder hardwareSupportsQuantity = new StringBuilder();
+                hardwareSupports.append(entry.getValue());
+                hardwareSupports.delete(0, hardwareSupports.lastIndexOf("///") + 4);
+                if(hardwareSupports!=null&& !hardwareSupports.isEmpty()&& !supports.equals(" ")){
+                hardwareSupportsQuantity.append(hardwareSupports);
+                hardwareSupports.delete(0, hardwareSupports.indexOf(" ") + 1);
+                hardwareSupportsQuantity.delete(hardwareSupportsQuantity.indexOf(" "), hardwareSupportsQuantity.length());
+                if (!itog.containsKey(hardwareSupports.toString())) {
+                    itog.put(hardwareSupports.toString(), Integer.parseInt(String.valueOf(hardwareSupportsQuantity)));
+                } else {
+                    int quantity = Integer.parseInt(String.valueOf(hardwareSupportsQuantity))
+                            + itog.get(hardwareSupports.toString());
+                    itog.put(hardwareSupports.toString(), quantity);
+                }
+            }}
              else {
             StringBuilder sut = new StringBuilder();
             StringBuilder sutQuantity = new StringBuilder();

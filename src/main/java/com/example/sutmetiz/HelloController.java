@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.HashMap;
 public class HelloController {
 
+    public TextArea textAreaNom1;
     @FXML
     private TextArea textAreaNom;
     @FXML
@@ -44,6 +45,7 @@ public class HelloController {
         lineNumber=1;
         for (String o:arrStrKol){
             kolAll.put(lineNumber,o);
+            o=o.replace("\u00a0","");
             o=o.trim().replaceAll(" ","").replaceAll(",",".");
             if(o==null||o.isEmpty()||!o.matches("-?\\d+(\\.\\d+)?")) {o="0.0";}
             kol.put(lineNumber,Double.parseDouble(o));

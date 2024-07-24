@@ -9,16 +9,16 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
     <Button onAction="#onHelloButtonClick" text="Сохранить" />
-   <SplitPane dividerPositions="0.29797979797979796" VBox.vgrow="ALWAYS">
+   <SplitPane dividerPositions="0.7314814814814816" VBox.vgrow="ALWAYS">
      <items>
-       <AnchorPane>
-            <children>
-               <TextArea fx:id="textAreaNom" layoutX="-20.0" prefHeight="181.0" prefWidth="62.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            </children>
+         <AnchorPane prefHeight="183.0" prefWidth="116.0">
+                          <TextArea fx:id="textAreaNom" layoutX="-20.0" prefHeight="40.0" prefWidth="118.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="118.0" text="Номенклатура" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </AnchorPane>
          <AnchorPane>
             <children>
-               <TextArea fx:id="textAreaKol" layoutX="91.0" prefHeight="158.0" prefWidth="42.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               <TextArea fx:id="textAreaKol" layoutX="91.0" prefHeight="158.0" prefWidth="42.0" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+               <Button mnemonicParsing="false" text="Кол-во" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             </children>
          </AnchorPane>
      </items>
