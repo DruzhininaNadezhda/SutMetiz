@@ -6,12 +6,13 @@ public class Separators {
     private String result;
 
     public boolean hardwareForSupports(String nomenclature, Double qty) {
+        nomenclature=nomenclature.trim();
         int quantity = (int) Math.round(qty);
-        if (Pattern.compile("РЛ.*").matcher(nomenclature).find() ||
-                Pattern.compile("РН.*").matcher(nomenclature).find()) {
+        if (Pattern.compile("^РЛ[ П].*").matcher(nomenclature).find() ||
+                Pattern.compile("^РН[ П].*").matcher(nomenclature).find()) {
             result = " //// " + quantity * 3 + " Метизы М8*20";
             return true;
-        } else if (Pattern.compile("РТ.*").matcher(nomenclature).find()) {
+        } else if (Pattern.compile("^РТ[ П].*").matcher(nomenclature).find()) {
             result = " //// " + quantity * 3 + " Метизы М8*25";
             return true;
         } else {

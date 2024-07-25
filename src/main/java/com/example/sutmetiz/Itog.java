@@ -31,7 +31,7 @@ public class Itog {
                 StringBuilder hardwareSupportsQuantity = new StringBuilder();
                 hardwareSupports.append(entry.getValue());
                 hardwareSupports.delete(0, hardwareSupports.lastIndexOf("///") + 4);
-                if(hardwareSupports!=null&& !hardwareSupports.isEmpty()&& !supports.equals(" ")){
+                if(hardwareSupports!=null&& !hardwareSupports.isEmpty()&& !hardwareSupports.equals(" ")){
                 hardwareSupportsQuantity.append(hardwareSupports);
                 hardwareSupports.delete(0, hardwareSupports.indexOf(" ") + 1);
                 hardwareSupportsQuantity.delete(hardwareSupportsQuantity.indexOf(" "), hardwareSupportsQuantity.length());

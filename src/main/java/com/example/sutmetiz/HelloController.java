@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.HashMap;
 public class HelloController {
 
-    public TextArea textAreaNom1;
     @FXML
     private TextArea textAreaNom;
     @FXML
