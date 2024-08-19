@@ -15,6 +15,7 @@ public class WriteIntoExcel {
         Sheet sheet = workbook.createSheet("Persons");
         sheet.setColumnWidth(0, 6000);
         sheet.setColumnWidth(1, 4000);
+        sheet.setColumnWidth(2, 9000);
 
         Row header = sheet.createRow(0);
 

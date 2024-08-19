@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 public class SutLm {
     private String itogo;
-    private final String metis16=" Метизы_М8*16";
+    private  String metis16;;
     private int metiz;
     private int sutQuantity;
     private String slb;
@@ -175,22 +175,31 @@ public class SutLm {
             sb =sb.delete(sb.indexOf(" "), sb.length());
             if (sb.indexOf(")")!=-1)  {sb =sb.deleteCharAt(sb.indexOf(")"));}
             hzOrS1= sb.toString();
+            metis16 =" Метизы М8*16";
         }else  if (c.matches(".*-НЖ.*")) {
             sb = sb.delete(0,sb.lastIndexOf("НЖ"));
             sb =sb.delete(sb.indexOf(" "), sb.length());
             if (sb.indexOf(")")!=-1)  {sb =sb.deleteCharAt(sb.indexOf(")"));}
             hzOrS1= sb.toString();
+            metis16 =" Метизы М8*16 НЖ";
         }else  if (c.matches(".*-ОЦ.*")) {
             sb = sb.delete(0,sb.lastIndexOf("ОЦ"));
             if (sb.indexOf(")")!=-1)  {sb =sb.deleteCharAt(sb.indexOf(")"));}
             sb =sb.delete(sb.indexOf(" "), sb.length());
             hzOrS1= sb.toString();
+            metis16 =" Метизы М8*16";
         }else  if (c.matches(".*-RAL.*")) {
             sb = sb.delete(0,sb.lastIndexOf("RAL"));
             if (sb.indexOf(")")!=-1)  {sb =sb.deleteCharAt(sb.indexOf(")"));}
             sb =sb.delete(sb.indexOf(" "), sb.length());
             hzOrS1= sb.toString();
-        }
+            metis16 =" Метизы М8*16";
+        }else  if (c.matches(".*-ХК.*")) {
+        sb = sb.delete(0,sb.lastIndexOf("ХК"));
+        if (sb.indexOf(")")!=-1)  {sb =sb.deleteCharAt(sb.indexOf(")"));}
+        sb =sb.delete(sb.indexOf(" "), sb.length());
+        hzOrS1= sb.toString();
+        metis16 =" Метизы М8*16";}
         return hzOrS1;
     }
 }
