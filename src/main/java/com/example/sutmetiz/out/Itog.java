@@ -1,4 +1,4 @@
-package com.example.sutmetiz;
+package com.example.sutmetiz.out;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,15 +25,18 @@ public class Itog {
         supports.append(separatorAndSupporMetiz);
         supports.delete(supports.indexOf(" ////"), supports.length());
         if (supports != null && !supports.isEmpty() && !supports.equals(" ")) {
-            supportsQuantity.append(supports);
-            supports.delete(0, supports.indexOf(" ") + 1);
-            supportsQuantity.delete(supportsQuantity.indexOf(" "), supportsQuantity.length());
-            if (!itog.containsKey(supports.toString())) {
-                itog.put(supports.toString(), Integer.parseInt(String.valueOf(supportsQuantity)));
-            } else {
-                int quantity = Integer.parseInt(String.valueOf(supportsQuantity))
-                        + itog.get(supports.toString());
-                itog.put(supports.toString(), quantity);
+            if (!supports.toString().contains("+")) {
+                supportsQuantity.append(supports);
+                supports.delete(0, supports.indexOf(" ") + 1);
+                supportsQuantity.delete(supportsQuantity.indexOf(" "), supportsQuantity.length());
+                if (!itog.containsKey(supports.toString())) {
+                    itog.put(supports.toString(), Integer.parseInt(String.valueOf(supportsQuantity)));
+                } else {
+                    int quantity = Integer.parseInt(String.valueOf(supportsQuantity))
+                            + itog.get(supports.toString());
+                    itog.put(supports.toString(), quantity);
+                }
+            } else {metizPlus(supports,supportsQuantity);
             }
         }
         StringBuilder hardwareSupports = new StringBuilder();
@@ -53,27 +56,33 @@ public class Itog {
                     itog.put(hardwareSupports.toString().trim(), quantity);
                 }
             }
-            else {hardwareSupportsQuantity.append(hardwareSupports);
-                hardwareSupports.delete(0, hardwareSupports.indexOf(" ") + 1);
-                String oneMetiz = hardwareSupports.substring(0,hardwareSupports.indexOf("+")-1);
-                String twoMetiz = hardwareSupports.substring(hardwareSupports.indexOf("+")+2, hardwareSupports.length()-1);
-                hardwareSupportsQuantity.delete(hardwareSupportsQuantity.indexOf(" "), hardwareSupportsQuantity.length());
-                if (!itog.containsKey(oneMetiz)) {
-                    itog.put(oneMetiz, Integer.parseInt(String.valueOf(hardwareSupportsQuantity)));
-                } else {
-                    int quantity = Integer.parseInt(String.valueOf(hardwareSupportsQuantity))
-                            + itog.get(oneMetiz);
-                    itog.put(oneMetiz, quantity);
-                }
-                if (!itog.containsKey(twoMetiz)) {
-                    itog.put(twoMetiz, Integer.parseInt(String.valueOf(hardwareSupportsQuantity)));
-                } else {
-                    int quantity = Integer.parseInt(String.valueOf(hardwareSupportsQuantity))
-                            + itog.get(twoMetiz);
-                    itog.put(twoMetiz, quantity);
-                }
+            else {metizPlus(hardwareSupports,hardwareSupportsQuantity);
             }
 
+        }
+    }
+    private void metizPlus(StringBuilder hardwareSupports, StringBuilder hardwareSupportsQuantity) {
+        hardwareSupportsQuantity.append(hardwareSupports);
+        hardwareSupports.delete(0, hardwareSupports.indexOf(" ") + 1);
+        String oneMetiz = hardwareSupports.substring(0,hardwareSupports.indexOf("+")-1);
+
+        StringBuilder twoMetizQuantity = new StringBuilder(hardwareSupports.substring(hardwareSupports.indexOf("+")+2, hardwareSupports.length()-1));
+        String twoMetiz = twoMetizQuantity.substring(twoMetizQuantity.indexOf(" ")+1,twoMetizQuantity.length());
+        twoMetizQuantity.delete(hardwareSupportsQuantity.indexOf(" "), twoMetizQuantity.length());
+        hardwareSupportsQuantity.delete(hardwareSupportsQuantity.indexOf(" "), hardwareSupportsQuantity.length());
+        if (!itog.containsKey(oneMetiz)) {
+            itog.put(oneMetiz, Integer.parseInt(String.valueOf(hardwareSupportsQuantity)));
+        } else {
+            int quantity = Integer.parseInt(String.valueOf(hardwareSupportsQuantity))
+                    + itog.get(oneMetiz);
+            itog.put(oneMetiz, quantity);
+        }
+        if (!itog.containsKey(twoMetiz)) {
+            itog.put(twoMetiz, Integer.parseInt(String.valueOf(twoMetizQuantity)));
+        } else {
+            int quantity = Integer.parseInt(String.valueOf(twoMetizQuantity))
+                    + itog.get(twoMetiz);
+            itog.put(twoMetiz, quantity);
         }
     }
     private void sutItog(String sutItogMetiz){

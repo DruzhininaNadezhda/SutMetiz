@@ -1,4 +1,7 @@
-package com.example.sutmetiz;
+package com.example.sutmetiz.in;
+import com.example.sutmetiz.out.Itog;
+import com.example.sutmetiz.out.WriteIntoExcel;
+import com.example.sutmetiz.productAnalysis.SutLm;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
@@ -23,7 +26,7 @@ public class HelloController {
         File file = fileChooser.showSaveDialog(stage);
 
         Itog itog = new Itog();
-        SutLm sutLm = new SutLm();
+        SortingOfNomenclature sortingOfNomenclature = new SortingOfNomenclature();
         WriteIntoExcel write = new WriteIntoExcel();
 
         String[] arrStr = textAreaNom.getText().split("\n");
@@ -62,9 +65,9 @@ public class HelloController {
             }
         }
 
-        sutLm.SutAndMetForLMZ(nomenclature,kol);
+           sortingOfNomenclature.allSutAndMetiz(nomenclature,kol);
         try {
-            write.writeIntoExcel(file.getPath(), nomenclatureALL,kolAll, sutLm.SutAndMetForLMZ(nomenclature,kol), itog.itog(sutLm.SutAndMetForLMZ(nomenclature,kol)));
+            write.writeIntoExcel(file.getPath(), nomenclatureALL,kolAll, sortingOfNomenclature.allSutAndMetiz(nomenclature,kol), itog.itog(sortingOfNomenclature.allSutAndMetiz(nomenclature,kol)));
        textAreaNom.setText("");
        textAreaKol.setText("");
         } catch (IOException e) {

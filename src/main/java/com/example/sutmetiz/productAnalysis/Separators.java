@@ -1,10 +1,9 @@
-package com.example.sutmetiz;
+package com.example.sutmetiz.productAnalysis;
 
 import java.util.regex.Pattern;
 
 public class Separators {
     private String result;
-    private  String metis;
 
     public boolean hardwareForSupports(String nomenclature, Double qty) {
         nomenclature=nomenclature.trim();
@@ -22,9 +21,9 @@ public class Separators {
     }
     public String metis(String nomenclature){
         if (nomenclature.matches(".*НЖ.*")){
-            return metis= "НЖ";
+            return "НЖ";
         }
-        return metis="";
+        return "";
     }
     public String getResult() {
         return result;
