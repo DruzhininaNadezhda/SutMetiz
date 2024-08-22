@@ -1,11 +1,11 @@
-package com.example.sutmetiz;
+package com.example.sutmetiz.productAnalysis;
 
 import java.util.Map;
 import java.util.regex.Pattern;
 
 public class Supports {
     private String result;
-    private  String metis;
+    private final String metizNlpr=" Метизы М8*20 или НЛ-ПР с Метизами М8*25";
 
     public boolean hardwareForSupports (String nomenclature,Double qty){
         nomenclature=nomenclature.trim();
@@ -36,23 +36,23 @@ public class Supports {
             return true;
         }
         else if (Pattern.compile("^ТМ *").matcher(nomenclature).find()) {
-            result = quantity*2+" Метизы М8*20 или НЛ-ПР+Метизы М8*25"+metis(nomenclature)+ "//// ";
+            result = quantity*2+metizNlpr+metis(nomenclature)+ "//// ";
             return true;
         }
         else if (Pattern.compile("^КГ6 6[0-5][0-5]\\**").matcher(nomenclature).find()) {
-            result= quantity*2+" Метизы М8*20 или НЛ-ПР+Метизы М8*25"+metis(nomenclature)+ "//// "+quantity*4+ " Метизы М8*20"+metis(nomenclature);
+            result= quantity*2+metizNlpr+metis(nomenclature)+ "//// "+quantity*4+ " Метизы М8*20"+metis(nomenclature);
             return true;
         }
         else if (Pattern.compile("^КГ6 6[0-5]\\**").matcher(nomenclature).find()) {
-            result= quantity*2+" Метизы М8*20 или НЛ-ПР+Метизы М8*25"+metis(nomenclature)+ "//// "+quantity*3+ " Метизы М8*20"+metis(nomenclature);
+            result= quantity*2+metizNlpr+metis(nomenclature)+ "//// "+quantity*3+ " Метизы М8*20"+metis(nomenclature);
             return true;
         }
         else if (Pattern.compile("^КГ6.*").matcher(nomenclature).find()) {
-            result= quantity*2+" Метизы М8*20 или НЛ-ПР+Метизы М8*25"+metis(nomenclature)+ "//// "+quantity*4+ " Метизы М8*20"+metis(nomenclature);
+            result= quantity*2+metizNlpr+metis(nomenclature)+ "//// "+quantity*4+ " Метизы М8*20"+metis(nomenclature);
             return true;
         }
         else if (Pattern.compile("^КГ2т *").matcher(nomenclature).find()) {
-            result= quantity*2+" Метизы М8*20 или НЛ-ПР+Метизы М8*25"+metis(nomenclature)+ "//// "+quantity*4+ " Метизы М8*25"+metis(nomenclature);
+            result= quantity*2+metizNlpr+metis(nomenclature)+ "//// "+quantity*4+ " Метизы М8*25"+metis(nomenclature);
             return true;
         }
         else if (Pattern.compile("^УК1 *").matcher(nomenclature).find()) {
@@ -70,7 +70,7 @@ public class Supports {
         else if (Pattern.compile("^КГ[1-8].*").matcher(nomenclature).find()
                 ||Pattern.compile("^К116[0-4].*").matcher(nomenclature).find()
                 ||Pattern.compile("^ОПС.*").matcher(nomenclature).find()) {
-            result= quantity*2+ " Метизы М8*20 или НЛ-ПР+Метизы М8*25"+metis(nomenclature)+ "//// ";
+            result= quantity*2+ metizNlpr+metis(nomenclature)+ "//// ";
             return true;
         }
         else if (Pattern.compile("^ПП[0-9].*").matcher(nomenclature).find()) {
@@ -82,24 +82,26 @@ public class Supports {
             return true;
         }
         else if (Pattern.compile("^ПЛ1.*").matcher(nomenclature).find()) {
-            result= quantity*2+ " Метизы М8*20 или НЛ-ПР+Метизы М8*25"+metis(nomenclature)+ "//// "+quantity*2+ " Метизы М8*25"+metis(nomenclature);
+            result= quantity*2+ metizNlpr+metis(nomenclature)+ "//// "+quantity*2+ " Метизы М8*25"+metis(nomenclature);
             return true;
         }
         else if (Pattern.compile("^ПЛ3.*").matcher(nomenclature).find()) {
-            result= quantity*2+ " Метизы М8*20 или НЛ-ПР+Метизы М8*25"+metis(nomenclature)+ "//// "+quantity*2+" Гайка самостопорящаяся М8 + Шайба усиленная М8"+metis(nomenclature);
+            result= quantity*2+ metizNlpr+metis(nomenclature)+ "//// "
+                    +quantity*2+" Гайка самостопорящаяся М8"+metis(nomenclature)+" + "+quantity*2+ " Шайба усиленная М8"+metis(nomenclature);
             return true;
         }
         else if (Pattern.compile("^ПЛ[0-9].*").matcher(nomenclature).find()) {
-            result= quantity*2+ " Метизы М8*20 или НЛ-ПР+Метизы М8*25"+metis(nomenclature)+ "//// "+quantity*4+" Гайка самостопорящаяся М8 + Шайба усиленная М8"+metis(nomenclature);
+            result= quantity*2+ metizNlpr+metis(nomenclature)+ "//// "
+                    +quantity*4+" Гайка самостопорящаяся М8"+metis(nomenclature)+" + "+quantity*4+ " Шайба усиленная М8"+metis(nomenclature);
             return true;
         }else {
             return false;}
     }
     public String metis(String nomenclature){
         if (nomenclature.matches(".*НЖ.*")){
-          return metis= "НЖ ";
+          return "НЖ ";
         }
-        return metis=" ";
+        return " ";
     }
     public String getResult() {
         return result;
