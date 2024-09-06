@@ -103,7 +103,6 @@ public class SupportsImpl implements Supports {
         if (nomenclature.matches(".*НЖ.*")){
           return "НЖ ";
         }
-        String k ="";
         return " ";
     }
     @Override
