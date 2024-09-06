@@ -14,4 +14,10 @@ module com.example.sutmetiz {
     opens com.example.sutmetiz.in to javafx.fxml;
     exports com.example.sutmetiz.out;
     opens com.example.sutmetiz.out to javafx.fxml;
+    //exports com.example.sutmetiz.productAnalysis.covers;
+    //opens com.example.sutmetiz.productAnalysis.covers to javafx.fxml;
+    exports com.example.sutmetiz.productAnalysis.impl;
+    opens com.example.sutmetiz.productAnalysis.impl to javafx.fxml;
+    exports com.example.sutmetiz.out.impl;
+    opens com.example.sutmetiz.out.impl to javafx.fxml;
 }

@@ -1,18 +1,19 @@
 package com.example.sutmetiz.in;
 
-import com.example.sutmetiz.productAnalysis.KKB;
-import com.example.sutmetiz.productAnalysis.Separators;
-import com.example.sutmetiz.productAnalysis.Supports;
-import com.example.sutmetiz.productAnalysis.SutLm;
+import com.example.sutmetiz.productAnalysis.*;
+import com.example.sutmetiz.productAnalysis.impl.KKBImpl;
+import com.example.sutmetiz.productAnalysis.impl.SeparatorsImpl;
+import com.example.sutmetiz.productAnalysis.impl.SupportsImpl;
+import com.example.sutmetiz.productAnalysis.impl.SutLmImpl;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class SortingOfNomenclature {
-    Supports supports = new Supports();
-    Separators separators = new Separators();
-    KKB kkb = new KKB();
-    SutLm sutLm = new SutLm();
+    private final Supports supports = new SupportsImpl();
+    private final Separators separators = new SeparatorsImpl();
+    private final KKB kkb = new KKBImpl();
+   private final SutLm sutLm = new SutLmImpl();
 
     public Map<Integer, String> allSutAndMetiz(Map<Integer, String> nomenclatureInFail, Map<Integer, Double> sutQuantityInFail) {
         int i = 0;
@@ -23,13 +24,13 @@ public class SortingOfNomenclature {
                 result.put(lineNumber, separators.getResult());
             } else if (supports.hardwareForSupports(nomenclatureInFail.get(lineNumber), sutQuantityInFail.get(lineNumber))) {
                 result.put(lineNumber, supports.getResult());
-            } else if (kkb.hardwareForKKB(nomenclatureInFail.get(lineNumber), sutQuantityInFail.get(lineNumber))){
+            } else if (kkb.hardwareForKKB(nomenclatureInFail.get(lineNumber), sutQuantityInFail.get(lineNumber))) {
                 result.put(lineNumber, kkb.getResult());
-            }else if (sutLm.sutAndMetForNt(nomenclatureInFail.get(lineNumber), sutQuantityInFail.get(lineNumber))){
+            } else if (sutLm.sutAndMetForNt(nomenclatureInFail.get(lineNumber), sutQuantityInFail.get(lineNumber))) {
                 result.put(lineNumber, sutLm.getResult());
-            }else if (sutLm.sutAndMetForLmAndNl(nomenclatureInFail.get(lineNumber), sutQuantityInFail.get(lineNumber))){
+            } else if (sutLm.sutAndMetForLmAndNl(nomenclatureInFail.get(lineNumber), sutQuantityInFail.get(lineNumber))) {
                 result.put(lineNumber, sutLm.getResult());
-            }else if (sutLm.sutAndMetForOther(nomenclatureInFail.get(lineNumber), lineNumber)){
+            } else if (sutLm.sutAndMetForOther(nomenclatureInFail.get(lineNumber), lineNumber)) {
                 result.put(lineNumber, sutLm.getResult());
             }
             lineNumber++;

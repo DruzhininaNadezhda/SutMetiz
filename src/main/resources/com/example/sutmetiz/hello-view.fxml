@@ -8,7 +8,7 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-    <Button onAction="#onHelloButtonClick" text="Сохранить" />
+    <Button onAction="#onHelloButtonClick" prefHeight="26.0" prefWidth="83.0" text="Сохранить" />
    <SplitPane dividerPositions="0.7314814814814816" VBox.vgrow="ALWAYS">
      <items>
          <AnchorPane prefHeight="183.0" prefWidth="116.0">
@@ -23,4 +23,8 @@
          </AnchorPane>
      </items>
    </SplitPane>
+   <RadioButton fx:id="trayButton" mnemonicParsing="false" text="Добавить крышки (создаёт крышки на все лотки)">
+      <tooltip>
+         <Tooltip text="Создаёт крышки на все лотки. НЕ проверяет есть ли в заявке подобные крышки" />
+      </tooltip></RadioButton>
 </VBox>
