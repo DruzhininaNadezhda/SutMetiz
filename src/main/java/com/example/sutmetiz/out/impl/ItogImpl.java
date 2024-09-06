@@ -96,7 +96,8 @@ public class ItogImpl implements Itog {
         if (!itog.containsKey(twoMetiz)) {
             itog.put(twoMetiz, Integer.parseInt(String.valueOf(twoMetizQuantity)));
         } else {
-            int quantity = Integer.parseInt(String.valueOf(twoMetizQuantity))
+
+            int quantity = Integer.parseInt(String.valueOf(twoMetizQuantity).trim())
                     + itog.get(twoMetiz);
             itog.put(twoMetiz, quantity);
         }

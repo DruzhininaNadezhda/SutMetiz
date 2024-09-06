@@ -66,7 +66,7 @@ public class TrayCoversAnalysisImpl implements TrayCoversAnalysis {
                 return true;
             } else {
                 if (nom.indexOf("6000") == -1 && nom.indexOf("4000") == -1) {
-                    cover = nom.indexOf("ЛТг") != -1 ? "КТ" + nom.delete(0, nom.indexOf("г") + 1).delete(nom.indexOf("*"), nom.indexOf("-"))
+                    cover = nom.indexOf("ЛТГ") != -1 ? "КТ" + nom.delete(0, nom.indexOf("г") + 1).delete(nom.indexOf("*"), nom.indexOf("-"))
                             : "КТ" + nom.delete(0, nom.indexOf("Т") + 1).delete(nom.indexOf("*"), nom.indexOf("-"));
                     quantityCovers = 1;
                     return true;
@@ -78,7 +78,7 @@ public class TrayCoversAnalysisImpl implements TrayCoversAnalysis {
                     return true;
                 } else if (nom.indexOf("-4000-") != -1) {
                     nom.replace(nom.indexOf("-4000-"), nom.indexOf("-4000-") + 6, "-2000-");
-                    cover = nom.indexOf("ЛТг") != -1 ? "КТ" + nom.delete(0, nom.indexOf("г") + 1).delete(nom.indexOf("*"), nom.indexOf("-"))
+                    cover = nom.indexOf("ЛТГ") != -1 ? "КТ" + nom.delete(0, nom.indexOf("г") + 1).delete(nom.indexOf("*"), nom.indexOf("-"))
                             : "КТ" + nom.delete(0, nom.indexOf("Т") + 1).delete(nom.indexOf("*"), nom.indexOf("-"));
                     quantityCovers = 2;
                     return true;

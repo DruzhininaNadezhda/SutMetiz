@@ -1,5 +1,6 @@
 package com.example.sutmetiz.in;
 import com.example.sutmetiz.out.Itog;
+import com.example.sutmetiz.out.WrittenIntoExcels;
 import com.example.sutmetiz.out.impl.ItogImpl;
 import com.example.sutmetiz.out.impl.WriteIntoExcelImpl;
 import javafx.fxml.FXML;
@@ -30,7 +31,7 @@ public class HelloController {
 
         Itog itog = new ItogImpl();
         SortingOfNomenclature sortingOfNomenclature = new SortingOfNomenclature();
-        WriteIntoExcelImpl write = new WriteIntoExcelImpl();
+        WrittenIntoExcels write = new WriteIntoExcelImpl();
 
         String[] arrStr = textAreaNom.getText().split("\n");
         HashMap<Integer,String> nomenclature = new HashMap<>();
@@ -45,7 +46,7 @@ public class HelloController {
         for (String h:arrStr){
             nomenclatureALL.put(lineNumber,h);
             if(h==null||h.isEmpty()) {h="0.0";}
-            nomenclature.put(lineNumber,h);
+            nomenclature.put(lineNumber,h.toUpperCase());
             lineNumber++;
         }
         lineNumber=1;
@@ -69,7 +70,7 @@ public class HelloController {
             }
         }
 
-           sortingOfNomenclature.allSutAndMetiz(nomenclature,kol);
+           //sortingOfNomenclature.allSutAndMetiz(nomenclature,kol);
         try {
             if (trayButton.isSelected()){
             write.writeIntoExcel(file.getPath(),

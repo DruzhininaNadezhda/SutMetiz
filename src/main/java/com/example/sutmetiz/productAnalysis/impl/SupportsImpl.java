@@ -24,7 +24,7 @@ public class SupportsImpl implements Supports {
             result= quantity*3+" Болт М8*25 Din933"+metis(nomenclature)+ "//// " +quantity*3+ " Гайка канальная М8"+metis(nomenclature);
             return true;
         }else if(Pattern.compile("^ОВ7 *").matcher(nomenclature).find()||
-                Pattern.compile("^ОВ7м *").matcher(nomenclature).find()){
+                Pattern.compile("^ОВ7М *").matcher(nomenclature).find()){
             result= quantity*6+" Болт М8*25 Din933"+metis(nomenclature)+"//// " +quantity*6+ " Гайка канальная М8"+metis(nomenclature);
             return true;
         } else if (Pattern.compile("^СК[86].*").matcher(nomenclature).find()||
