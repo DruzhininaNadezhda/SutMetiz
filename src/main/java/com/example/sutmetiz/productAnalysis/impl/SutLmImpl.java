@@ -110,7 +110,7 @@ public class SutLmImpl implements SutLm {
                 || Pattern.compile("^НЛЗ[ХТР].*").matcher(nomenclature).find()
                 || Pattern.compile("^НТ[ХТР].*").matcher(nomenclature).find()
                 || Pattern.compile("^ЛТ[ХТР].*").matcher(nomenclature).find()
-                || Pattern.compile("^ЛТг[ХТР].*").matcher(nomenclature).find()) {
+                || Pattern.compile("^ЛТГ[ХТР].*").matcher(nomenclature).find()) {
             result = "Соединители необходимо посчитать в позиции" + lineNumber + " ///";
             return true;
         } else {
