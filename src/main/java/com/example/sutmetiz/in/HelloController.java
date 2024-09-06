@@ -1,9 +1,10 @@
 package com.example.sutmetiz.in;
 import com.example.sutmetiz.out.Itog;
-import com.example.sutmetiz.out.WriteIntoExcel;
-import com.example.sutmetiz.productAnalysis.SutLm;
+import com.example.sutmetiz.out.impl.ItogImpl;
+import com.example.sutmetiz.out.impl.WriteIntoExcelImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -17,17 +18,19 @@ public class HelloController {
     @FXML
     private TextArea textAreaKol;
     @FXML
+    private RadioButton trayButton;
+    @FXML
     protected void onHelloButtonClick() throws IOException {
         Stage stage = new Stage();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select directory for save");
-        fileChooser.setInitialFileName("");
+        fileChooser.setInitialFileName("Сут_метизы_опорка");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Книга Excel", "*.xlsx"));
         File file = fileChooser.showSaveDialog(stage);
 
-        Itog itog = new Itog();
+        Itog itog = new ItogImpl();
         SortingOfNomenclature sortingOfNomenclature = new SortingOfNomenclature();
-        WriteIntoExcel write = new WriteIntoExcel();
+        WriteIntoExcelImpl write = new WriteIntoExcelImpl();
 
         String[] arrStr = textAreaNom.getText().split("\n");
         HashMap<Integer,String> nomenclature = new HashMap<>();
@@ -36,6 +39,7 @@ public class HelloController {
         String[] arrStrKol = textAreaKol.getText().split("\n");
         HashMap<Integer,Double> kol = new HashMap<>();
         HashMap<Integer,String> kolAll = new HashMap<>();
+
        try {
         int lineNumber=1;
         for (String h:arrStr){
@@ -67,9 +71,22 @@ public class HelloController {
 
            sortingOfNomenclature.allSutAndMetiz(nomenclature,kol);
         try {
-            write.writeIntoExcel(file.getPath(), nomenclatureALL,kolAll, sortingOfNomenclature.allSutAndMetiz(nomenclature,kol), itog.itog(sortingOfNomenclature.allSutAndMetiz(nomenclature,kol)));
-       textAreaNom.setText("");
-       textAreaKol.setText("");
+            if (trayButton.isSelected()){
+            write.writeIntoExcel(file.getPath(),
+                    nomenclatureALL,
+                    kolAll,
+                    sortingOfNomenclature.allSutAndMetiz(nomenclature,kol),
+                    itog.finalForSutAndMetiz(sortingOfNomenclature.allSutAndMetiz(nomenclature,kol)),
+                    itog.trays(nomenclature,kol));
+            }
+            else {
+                write.writeIntoExcel(file.getPath(), nomenclatureALL,kolAll,
+                        sortingOfNomenclature.allSutAndMetiz(nomenclature,kol),
+                        itog.finalForSutAndMetiz(sortingOfNomenclature.allSutAndMetiz(nomenclature,kol)),
+                        new HashMap<>());
+            }
+            textAreaNom.setText("");
+            textAreaKol.setText("");
         } catch (IOException e) {
             errorsWindow(e.getMessage());
             throw new RuntimeException(e);

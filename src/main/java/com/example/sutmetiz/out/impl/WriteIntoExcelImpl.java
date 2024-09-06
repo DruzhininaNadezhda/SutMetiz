@@ -1,15 +1,19 @@
-package com.example.sutmetiz.out;
+package com.example.sutmetiz.out.impl;
+import com.example.sutmetiz.out.WrittenIntoExcels;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import java.io.FileNotFoundException;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-public class WriteIntoExcel {
-    public void writeIntoExcel(String path, Map<Integer, String> nomenclature, Map<Integer, String> nomenclatureQuantity, Map<Integer, String> result,Map<String, Integer> itogo ) throws FileNotFoundException, IOException {
+public class WriteIntoExcelImpl implements WrittenIntoExcels {
+    public void writeIntoExcel(String path, Map<Integer, String> nomenclature,
+                               Map<Integer, String> nomenclatureQuantity,
+                               Map<Integer, String> result,Map<String, Integer> itog,
+                               Map<String, Integer> tray ) throws  IOException {
         Workbook workbook = new XSSFWorkbook();
 
         Sheet sheet = workbook.createSheet("Persons");
@@ -60,7 +64,20 @@ public class WriteIntoExcel {
             }
             i++;
         }
-        for (Map.Entry<String, Integer> entry : itogo.entrySet()) {
+        if (tray!=null&&!tray.isEmpty()) {
+            for (Map.Entry<String, Integer> entry : tray.entrySet()) {
+                Row row = sheet.createRow(i);
+                Cell cell = row.createCell(0);
+                cell.setCellValue(entry.getKey());
+                cell.setCellStyle(style);
+                cell = row.createCell(1);
+                cell.setCellValue(entry.getValue());
+                cell.setCellStyle(style);
+                i++;
+            }
+        }
+
+        for (Map.Entry<String, Integer> entry : itog.entrySet()) {
             if (!Pattern.compile("Соединители необходимо посчитать в позиции.*").matcher(entry.getKey()).find()) {
                 Row row = sheet.createRow(i);
                 Cell cell = row.createCell(0);
@@ -71,8 +88,7 @@ public class WriteIntoExcel {
                 cell.setCellStyle(style);
                 i++;}
         }
-
-        for (Map.Entry<String, Integer> entry : itogo.entrySet()) {
+        for (Map.Entry<String, Integer> entry : itog.entrySet()) {
             if (Pattern.compile("Соединители необходимо посчитать в позиции.*").matcher(entry.getKey()).find()) {
                 Row row = sheet.createRow(i);
                 Cell cell = row.createCell(0);
