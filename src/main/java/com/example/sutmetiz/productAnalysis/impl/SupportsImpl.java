@@ -20,7 +20,7 @@ public class SupportsImpl implements Supports {
             result= " //// "+quantity*3+ " Метизы М8*20"+metis(nomenclature);
             return true;
         }else if(Pattern.compile("^ОВ6 *").matcher(nomenclature).find()||
-                Pattern.compile("^ОВ6м *").matcher(nomenclature).find()){
+                Pattern.compile("^ОВ6М *").matcher(nomenclature).find()){
             result= quantity*3+" Болт М8*25 Din933"+metis(nomenclature)+ "//// " +quantity*3+ " Гайка канальная М8"+metis(nomenclature);
             return true;
         }else if(Pattern.compile("^ОВ7 *").matcher(nomenclature).find()||
@@ -53,7 +53,7 @@ public class SupportsImpl implements Supports {
             result= quantity*2+metizNlpr+metis(nomenclature)+ "//// "+quantity*4+ " Метизы М8*20"+metis(nomenclature);
             return true;
         }
-        else if (Pattern.compile("^КГ2т *").matcher(nomenclature).find()) {
+        else if (Pattern.compile("^КГ2Т *").matcher(nomenclature).find()) {
             result= quantity*2+metizNlpr+metis(nomenclature)+ "//// "+quantity*4+ " Метизы М8*25"+metis(nomenclature);
             return true;
         }

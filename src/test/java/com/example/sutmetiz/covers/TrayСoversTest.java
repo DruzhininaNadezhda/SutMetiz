@@ -89,19 +89,19 @@ class TrayСoversTest {
     @Test
     void quantityCover2() {
         TrayCoversAnalysisImpl trayCoversAnalysis = new TrayCoversAnalysisImpl();
-        trayCoversAnalysis.coversForAllnomenclatureYesOrNo("ЛТг 500*100-1,0-6000-ОЦ");
+        trayCoversAnalysis.coversForAllnomenclatureYesOrNo("ЛТГ 500*100-1,0-6000-ОЦ");
         Assertions.assertEquals(trayCoversAnalysis.getCover(),"КТ 500-1,0-3000-ОЦ");
     }
     @Test
     void quantityCover3() {
         TrayCoversAnalysisImpl trayCoversAnalysis = new TrayCoversAnalysisImpl();
-        trayCoversAnalysis.coversForAllnomenclatureYesOrNo("ЛТг 500*100-1,0-3000-ОЦ");
+        trayCoversAnalysis.coversForAllnomenclatureYesOrNo("ЛТГ 500*100-1,0-3000-ОЦ");
         Assertions.assertEquals(trayCoversAnalysis.getCover(),"КТ 500-1,0-3000-ОЦ");
     }
     @Test
     void quantityCover4() {
         TrayCoversAnalysisImpl trayCoversAnalysis = new TrayCoversAnalysisImpl();
-        trayCoversAnalysis.coversForAllnomenclatureYesOrNo("ЛТг 500*100-1,0-4000-ОЦ");
+        trayCoversAnalysis.coversForAllnomenclatureYesOrNo("ЛТГ 500*100-1,0-4000-ОЦ");
         Assertions.assertEquals(trayCoversAnalysis.getCover(),"КТ 500-1,0-2000-ОЦ");
     }
     @Test
