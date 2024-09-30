@@ -1,10 +1,7 @@
 package com.example.sutmetiz.in;
 
 import com.example.sutmetiz.productAnalysis.*;
-import com.example.sutmetiz.productAnalysis.impl.KKBImpl;
-import com.example.sutmetiz.productAnalysis.impl.SeparatorsImpl;
-import com.example.sutmetiz.productAnalysis.impl.SupportsImpl;
-import com.example.sutmetiz.productAnalysis.impl.SutLmImpl;
+import com.example.sutmetiz.productAnalysis.impl.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +10,8 @@ public class SortingOfNomenclature {
     private final Supports supports = new SupportsImpl();
     private final Separators separators = new SeparatorsImpl();
     private final KKB kkb = new KKBImpl();
-   private final SutLm sutLm = new SutLmImpl();
+    private final SutLm sutLm = new SutLmImpl();
+    private final Overpass overpass = new OverpassImpl();
 
     public Map<Integer, String> allSutAndMetiz(Map<Integer, String> nomenclatureInFail, Map<Integer, Double> sutQuantityInFail) {
         int i = 0;
@@ -32,6 +30,8 @@ public class SortingOfNomenclature {
                 result.put(lineNumber, sutLm.getResult());
             } else if (sutLm.sutAndMetForOther(nomenclatureInFail.get(lineNumber), lineNumber)) {
                 result.put(lineNumber, sutLm.getResult());
+            } else if (overpass.hardwareForOverpass(nomenclatureInFail.get(lineNumber), sutQuantityInFail.get(lineNumber))) {
+                result.put(lineNumber, overpass.getResult());
             }
             lineNumber++;
             i++;

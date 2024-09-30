@@ -1,4 +1,4 @@
-package com.example.sutmetiz.covers;
+package com.example.sutmetiz.productAnalysis.impl;
 
 import com.example.sutmetiz.productAnalysis.impl.TrayCoversAnalysisImpl;
 import org.junit.jupiter.api.Assertions;

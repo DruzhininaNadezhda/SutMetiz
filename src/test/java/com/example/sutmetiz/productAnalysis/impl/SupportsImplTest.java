@@ -1,4 +1,4 @@
-package com.example.sutmetiz;
+package com.example.sutmetiz.productAnalysis.impl;
 
 import com.example.sutmetiz.productAnalysis.impl.SupportsImpl;
 import org.junit.jupiter.api.*;

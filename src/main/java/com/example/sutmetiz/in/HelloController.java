@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 import lombok.Getter;
 import org.apache.log4j.Logger;
@@ -41,8 +42,6 @@ public class HelloController {
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Книга Excel", "*.xlsx"));
         File file = fileChooser.showSaveDialog(stage);
         nomenclatureAnalysis();
-
-        //sortingOfNomenclature.allSutAndMetiz(nomenclature,kol);
         try {
             if (trayButton.isSelected()){
                 write.writeIntoExcel(file.getPath(),
@@ -53,9 +52,12 @@ public class HelloController {
                         itog.trays(nomenclature,kol));
             }
             else {
-                write.writeIntoExcel(file.getPath(), nomenclatureALL,kolAll,
-                        sortingOfNomenclature.allSutAndMetiz(nomenclature,kol),
-                        itog.finalForSutAndMetiz(sortingOfNomenclature.allSutAndMetiz(nomenclature,kol)),
+                Map<Integer, String> result =sortingOfNomenclature.allSutAndMetiz(nomenclature,kol);
+                write.writeIntoExcel(file.getPath(),
+                        nomenclatureALL,
+                        kolAll,
+                        result,
+                        itog.finalForSutAndMetiz(result),
                         new HashMap<>());
             }
             textAreaNom.setText("");

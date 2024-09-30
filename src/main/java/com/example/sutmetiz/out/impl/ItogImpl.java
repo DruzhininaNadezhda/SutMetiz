@@ -81,7 +81,6 @@ public class ItogImpl implements Itog {
         hardwareSupportsQuantity.append(hardwareSupports);
         hardwareSupports.delete(0, hardwareSupports.indexOf(" ") + 1);
         String oneMetiz = hardwareSupports.substring(0,hardwareSupports.indexOf("+")-1);
-
         StringBuilder twoMetizQuantity = new StringBuilder(hardwareSupports.substring(hardwareSupports.indexOf("+")+2, hardwareSupports.length()-1));
         String twoMetiz = twoMetizQuantity.substring(twoMetizQuantity.indexOf(" ")+1,twoMetizQuantity.length());
         twoMetizQuantity.delete(hardwareSupportsQuantity.indexOf(" "), twoMetizQuantity.length());
