@@ -4,12 +4,10 @@ import com.example.sutmetiz.productAnalysis.impl.TrayCoversAnalysisImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class TrayСoversTest {
-
+class TrayСoversTest{
     @Test
     void allCovers() {
     }
-
     @Test
     void coverName() {
         TrayCoversAnalysisImpl trayCoversAnalysis = new TrayCoversAnalysisImpl();

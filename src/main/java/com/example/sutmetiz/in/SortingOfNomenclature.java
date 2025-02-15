@@ -12,6 +12,7 @@ public class SortingOfNomenclature {
     private final KKB kkb = new KKBImpl();
     private final SutLm sutLm = new SutLmImpl();
     private final Overpass overpass = new OverpassImpl();
+    private final FatherMather fatherMather = new FatherMatherImpl();
 
     public Map<Integer, String> allSutAndMetiz(Map<Integer, String> nomenclatureInFail, Map<Integer, Double> sutQuantityInFail) {
         int i = 0;
@@ -32,6 +33,8 @@ public class SortingOfNomenclature {
                 result.put(lineNumber, sutLm.getResult());
             } else if (overpass.hardwareForOverpass(nomenclatureInFail.get(lineNumber), sutQuantityInFail.get(lineNumber))) {
                 result.put(lineNumber, overpass.getResult());
+            } else if (fatherMather.hardwareForFatherMather(nomenclatureInFail.get(lineNumber), sutQuantityInFail.get(lineNumber))) {
+                result.put(lineNumber, fatherMather.getResult());
             }
             lineNumber++;
             i++;
